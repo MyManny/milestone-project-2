@@ -31,7 +31,7 @@ function App() {
         >
           <p>Brett is pushing something</p>
           Learn React
-          <p> Ben McConnaughy </p>
+          <p> Ben McConnaughy is trying to make the branch work </p>
           <p>this is seth</p>
           <p>Esteban Sepulveda</p>
         </a>
