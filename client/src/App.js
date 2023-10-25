@@ -18,6 +18,7 @@ function App() {
           <p>Brett is pushing something</p>
           Learn React
           <p> Ben McConnaughy </p>
+          <p>this is seth</p>
         </a>
       </header>
     </div>
