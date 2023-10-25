@@ -29,13 +29,13 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <p>Brett is pushing something</p>
+          <p> Brett is pushing something </p>
           Learn React
           <p> Ben McConnaughy is trying to make the branch work </p>
-          <p>this is seth</p>
-          <p>Esteban Sepulveda</p>
+          <p> this is seth </p>
+          <p> Esteban Sepulveda </p>
         </a>
-        <p>DavidVidal</p>
+        <p> DavidVidal </p>
       </header>
     </div>
   );
