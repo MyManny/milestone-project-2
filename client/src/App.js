@@ -30,7 +30,7 @@ function App() {
           rel="noopener noreferrer"
         >
           <p>Brett is pushing something</p>
-          Learn React
+                Learn React
           <p> Ben McConnaughy </p>
           <p>this is seth, writing more to try and push to my own branch</p>
           <p>Esteban Sepulveda</p>
