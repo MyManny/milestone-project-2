@@ -16,6 +16,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+          <p> Ben McConnaughy </p>
         </a>
       </header>
     </div>
