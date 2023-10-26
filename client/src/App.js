@@ -33,7 +33,7 @@ function App() {
           Learn React
           <p> Ben McConnaughy is trying to make the branch work </p>
           <p> this is seth </p>
-          <p> Esteban Sepulveda </p>
+          <p> This is Esteban Sepulveda </p>
         </a>
         <p> DavidVidal </p>
       </header>
