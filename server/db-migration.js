@@ -15,9 +15,19 @@ CREATE TABLE IF NOT EXISTS "Todo" (
     user_id INTEGER REFERENCES "User"(id),
     name VARCHAR(255) NOT NULL,
     completed BOOLEAN DEFAULT false
+);`;
+const createTravelTable = `
+CREATE TABLE IF NOT EXISTS "Travel" (
+    event_id SERIAL PRIMARY KEY,       
+    event_title VARCHAR(255) NOT NULL, 
+    event_description TEXT,            
+    event_date DATE NOT NULL,          
+    event_time TIME NOT NULL,          
+    created_at TIMESTAMPTZ DEFAULT NOW, 
+    updated_at TIMESTAMPTZ DEFAULT NOW 
 );
-
 `;
+
 
 //create table title, description, date, time 
 
