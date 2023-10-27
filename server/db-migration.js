@@ -16,7 +16,10 @@ CREATE TABLE IF NOT EXISTS "Todo" (
     name VARCHAR(255) NOT NULL,
     completed BOOLEAN DEFAULT false
 );
+
 `;
+
+//create table title, description, date, time 
 
 async function createTables() {
     try {
