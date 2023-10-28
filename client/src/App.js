@@ -31,15 +31,9 @@ function App() {
         >
           <p> Brett is pushing something </p>
           Learn React
-<<<<<<< HEAD
           <p> Ben McConnaughy </p>
           <p>this is seth, im writing more for testing purposes</p>
           <p>Esteban Sepulveda</p>
-=======
-          <p> Ben McConnaughy is trying to make the branch work </p>
-          <p> this is seth </p>
-          <p> Esteban Sepulveda </p>
->>>>>>> 0bac431aa8c8b7ed4493b2e3b63df2809584c45b
         </a>
         <p> DavidVidal </p>
       </header>
