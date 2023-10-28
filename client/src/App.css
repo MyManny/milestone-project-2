@@ -2,6 +2,8 @@ body {
   background-image: linear-gradient(100deg, rgb(49, 16, 213), rgb(6, 70, 27));
   margin: 0;
   padding: 0;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .home--container {
