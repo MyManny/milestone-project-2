@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import UserModal from './Components/UserModal';
 import HomePage from "./Components/HomePage";
 import "./App.css";
+
 
 
 function App() {
@@ -19,8 +21,8 @@ function App() {
   }, [API_URL]);
   return (
     <div>
-    <HomePage> 
-    </HomePage>
+    <UserModal />
+    <HomePage /> 
     </div>
   )
 }
