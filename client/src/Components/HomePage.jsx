@@ -1,3 +1,10 @@
+import React, { useState } from 'react';
+import Modal from 'react-modal';
+import RegistrationForm from './RegistrationForm';
+import LoginForm from './LoginForm';
+import UserList from './UserList';
+
+
 export default function HomePage() {
     function handleButtonClick() {
         const plusButton = document.querySelector(".plus--btn");
@@ -7,6 +14,16 @@ export default function HomePage() {
           plusButton.classList.remove("spin");
         }, 1000);
       }
+      const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
 
     return (
       <div className="home--background">
@@ -20,6 +37,18 @@ export default function HomePage() {
           >
             <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
           </svg>
+          <div>
+      <button onClick={openModal}>Open Popup</button>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+      >
+        <RegistrationForm />
+        <LoginForm />
+        <UserList />
+        <button onClick={closeModal}>Close</button>
+      </Modal>
+    </div>
           <svg 
                 className="book--btn"
                 xmlns="http://www.w3.org/2000/svg"

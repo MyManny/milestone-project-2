@@ -1,13 +1,13 @@
 const client = require("./db-client");
 
-// const createUserTableQuery = `
-// CREATE TABLE IF NOT EXISTS "User" (
-//     id SERIAL PRIMARY KEY,
-//     username VARCHAR(255) UNIQUE NOT NULL,
-//     password VARCHAR(255) NOT NULL,
-//     token VARCHAR(255) DEFAULT NULL
-// );
-// `;
+const createUserTableQuery = `
+CREATE TABLE IF NOT EXISTS "User" (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    token VARCHAR(255) DEFAULT NULL
+);
+`;
 
 // const createTodoTableQuery = `
 // CREATE TABLE IF NOT EXISTS "Todo" (
@@ -16,9 +16,13 @@ const client = require("./db-client");
 //     name VARCHAR(255) NOT NULL,
 //     completed BOOLEAN DEFAULT false
 // );`;
-const createTravelTableQuery = `
+
+const createTodoTableQuery = `
 CREATE TABLE IF NOT EXISTS "Travel" (
-    event_id SERIAL PRIMARY KEY,       
+    event_id SERIAL PRIMARY KEY, 
+    user_id INTEGER REFERENCES "User"(id),
+    name VARCHAR(255) NOT NULL,
+    completed BOOLEAN DEFAULT false      
     event_title VARCHAR(255) NOT NULL, 
     event_description TEXT,            
     event_date DATE NOT NULL,          
@@ -34,12 +38,12 @@ CREATE TABLE IF NOT EXISTS "Travel" (
 async function createTables() {
     try {
         // Create User table
-        // await client.query(createUserTableQuery);
-        // console.log('"User" table created successfully.');
+        await client.query(createUserTableQuery);
+        console.log('"User" table created successfully.');
 
         // Create Todo table
-        await client.query(createTravelTableQuery);
-        console.log('"Travel" table created successfully.');
+        await client.query(createTodoTableQuery);
+        console.log('"Todo" table created successfully.');
     } catch (err) {
         console.error("Error creating tables:", err);
     } finally {
