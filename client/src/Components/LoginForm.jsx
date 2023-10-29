@@ -1,29 +1,33 @@
-import React, { useState } from 'react';
+import axios from "axios";
+import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+
 
 function LoginForm() {
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+  // const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Implement your login logic here, e.g., make an API request to authenticate the user with the provided data.
-    console.log('Login data:', formData);
-    // Clear the form
-    setFormData({
-      username: '',
-      password: '',
-    });
-  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios
+        .post(`${API_URL}/login`, {
+            username: username,
+            password: password,
+        })
+        .then((response) => {
+            console.log("Successfully logged in!");
+            console.log(response);
+            localStorage.setItem("token", response.data.token);
+            // navigate("/todos");
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
 
   return (
     <form onSubmit={handleSubmit}>
@@ -33,8 +37,8 @@ function LoginForm() {
         <input
           type="text"
           name="username"
-          value={formData.username}
-          onChange={handleInputChange} // Use the handleInputChange function
+          value={username}
+          onChange={(e) => setUsername(e.target.value)} // Use the handleInputChange function
         />
       </div>
       <div>
@@ -42,8 +46,8 @@ function LoginForm() {
         <input
           type="password"
           name="password"
-          value={formData.password}
-          onChange={handleInputChange} // Use the handleInputChange function
+          value={password}
+          onChange={(e) => setPassword(e.target.value)} // Use the handleInputChange function
         />
       </div>
       </div>

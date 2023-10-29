@@ -27,6 +27,7 @@ function RegistrationForm() {
 
   return (
     <form onSubmit={handleSubmit}>
+      <div class='align'>
       <div>
         <label className='input'>Username:</label>
         <input
@@ -37,7 +38,7 @@ function RegistrationForm() {
         />
       </div>
       <div>
-        <label>Password:</label>
+        <label className='input'>Password:</label>
         <input
           type="password"
           name="password"
@@ -45,7 +46,9 @@ function RegistrationForm() {
           onChange={handleInputChange} // Use the handleInputChange function
         />
       </div>
+      </div>
       <button class="button-17" type="submit">Register</button>
+      
     </form>
   );
 }
