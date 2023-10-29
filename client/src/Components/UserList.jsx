@@ -19,7 +19,7 @@ function UserList() {
       <ul>
         {users.map((user) => (
           <li key={user.id}>
-            <span>Username: {user.username}</span>
+            <span className='input'>Username: {user.username}</span>
             <span>Email: {user.email}</span>
             <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
           </li>

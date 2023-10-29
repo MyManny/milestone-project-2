@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS "User" (
 // );`;
 
 const createTodoTableQuery = `
-CREATE TABLE IF NOT EXISTS "Travel" (
+CREATE TABLE IF NOT EXISTS "Todo" (
     event_id SERIAL PRIMARY KEY, 
     user_id INTEGER REFERENCES "User"(id),
     name VARCHAR(255) NOT NULL,

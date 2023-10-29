@@ -1,8 +1,9 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState, Suspense } from "react";
 import UserModal from './Components/UserModal';
 import HomePage from "./Components/HomePage";
 import "./App.css";
+
 
 
 
@@ -10,7 +11,7 @@ function App() {
   const [message, setMessage] = useState("Loading...");
   const [secret, setSecret] = useState("Loading...");
 
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5002";
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 
   useEffect(() => {
