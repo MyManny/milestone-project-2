@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import Modal from 'react-modal';
-import RegistrationForm from './RegistrationForm';
-import LoginForm from './LoginForm';
-import UserList from './UserList';
 
 
 export default function HomePage() {
     function handleButtonClick() {
         const plusButton = document.querySelector(".plus--btn");
         plusButton.classList.add("spin");
-    
+        
         setTimeout(() => {
           plusButton.classList.remove("spin");
         }, 1000);
