@@ -62,13 +62,13 @@ body {
   opacity: 0.3;
 }
 
-.tooltip-v {
+.tooltip--views {
   position: relative;
   display: inline-block;
   max-height: fit-content;
 }
 
-.tooltip-v .tooltiptext-v {
+.tooltip--views .tooltiptext--views {
   visibility: hidden;
   width: 80px;
   background-color: black;
@@ -85,7 +85,7 @@ body {
   transition: opacity 0.3s
 }
 
-.tooltip-v:hover .tooltiptext-v {
+.tooltip--views:hover .tooltiptext--views {
   visibility: visible;
   opacity: 0.3;
 }
@@ -126,4 +126,10 @@ body {
 
 .dark--mode--btn:hover {
   transform: scale(1.3);
+}
+
+.icon--container:hover .tooltiptext,
+.icon--container:hover .tooltiptext--views {
+  visibility: visible;
+  opacity: 0.3;
 }
