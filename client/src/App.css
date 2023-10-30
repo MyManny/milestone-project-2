@@ -18,11 +18,8 @@ body {
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.2) 0 3px 5px -1px, rgba(0, 0, 0, 0.14) 0 6px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 18px 0;
   outline: none;
-}
-
-.home--container {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .plus--btn,
@@ -31,63 +28,6 @@ body {
   height: 30px;
   cursor: pointer;
   transform: scale(1);
-}
-
-.tooltip {
-  position: relative;
-  display: inline-block;
-  pointer-events: auto;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 70px;
-  background-color: black;
-  font-weight: 700;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
-  transition: opacity 0.3s
-}
-
-.tooltip:hover .tooltiptext {
-  pointer-events: auto;
-  visibility: visible;
-  opacity: 0.3;
-}
-
-.tooltip-v {
-  position: relative;
-  display: inline-block;
-  max-height: fit-content;
-}
-
-.tooltip-v .tooltiptext-v {
-  visibility: hidden;
-  width: 80px;
-  background-color: black;
-  font-weight: 700;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
-  transition: opacity 0.3s
-}
-
-.tooltip-v:hover .tooltiptext-v {
-  visibility: visible;
-  opacity: 0.3;
 }
 
 .list--btn:hover {
@@ -104,15 +44,6 @@ body {
   animation: spin 1s linear;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(180deg);
-  }
-}
-
 .dark--mode--btn {
   display: flex;
   position: absolute;
@@ -125,5 +56,15 @@ body {
 }
 
 .dark--mode--btn:hover {
+  cursor: pointer;
   transform: scale(1.3);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
 }
