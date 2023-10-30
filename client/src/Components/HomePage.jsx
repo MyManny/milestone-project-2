@@ -17,12 +17,24 @@ export default function HomePage({ isDarkMode, toggleDarkMode }) {
     const background = document.querySelector(".home--background");
     const body = document.querySelector("body");
 
+    localStorage.setItem("mode", isDarkMode ? "dark" : "light");
+
     if (background && body) {
       body.style.backgroundColor = isDarkMode ? "#1a1a1a" : "#e7eef1";
       background.style.backgroundColor = isDarkMode ? "#1a1a1a" : "#e7eef1";
     }
   }, [isDarkMode]);
-    
+
+  useEffect(() => {
+    const savedMode = localStorage.getItem("mode");
+  
+    if (savedMode === "dark" && !isDarkMode) {
+      toggleDarkMode();
+    } else if (savedMode === "light" && isDarkMode) {
+      toggleDarkMode();
+    }
+  }, [toggleDarkMode, isDarkMode]);
+
   return (
     <div className={isDarkMode ? "home--background dark--mode" : "home--background"}>
       <div className="home--container">
