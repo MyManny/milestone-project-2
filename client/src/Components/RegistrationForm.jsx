@@ -1,29 +1,28 @@
-import React, { useState } from 'react';
+import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function RegistrationForm() {
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+  const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios
+        .post(`${API_URL}/register`, {
+            username: username,
+            password: password,
+        })
+        .then((response) => {
+            navigate("/login");
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Implement your registration logic here, e.g., make an API request to register the user with the provided data.
-    console.log('Registration data:', formData);
-    // Clear the form
-    setFormData({
-      username: '',
-      password: '',
-    });
-  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -33,8 +32,8 @@ function RegistrationForm() {
         <input
           type="text"
           name="username"
-          value={formData.username}
-          onChange={handleInputChange} // Use the handleInputChange function
+          value={username}
+          onChange={(e) => setUsername(e.target.value)} // Use the handleInputChange function
         />
       </div>
       <div>
@@ -42,8 +41,8 @@ function RegistrationForm() {
         <input
           type="password"
           name="password"
-          value={formData.password}
-          onChange={handleInputChange} // Use the handleInputChange function
+          value={password}
+          onChange={(e) => setPassword(e.target.value)} // Use the handleInputChange function
         />
       </div>
       </div>

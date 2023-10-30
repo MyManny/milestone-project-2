@@ -6,7 +6,7 @@ import React, { useState } from "react";
 function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
   // const navigate = useNavigate();
 
   
