@@ -86,3 +86,16 @@ body {
     transform: rotate(180deg);
   }
 }
+
+
+.dark--mode--btn {
+  display: flex;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  transform: scale(1);
+  transition: transform 0.3s;
+  width: 25px;
+  height: 25px;
+}
+
