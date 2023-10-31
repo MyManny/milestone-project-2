@@ -2,8 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 
+import "./LoginRegistration.css"
 
-function LoginForm() {
+function LoginUser() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
@@ -56,5 +57,5 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default LoginUser;
 

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import LoginForm from './LoginForm';
+import LoginForm from './LoginUser';
 import RegistrationForm from './RegistrationForm';
 
 Modal.setAppElement('#root'); // Set the root element for accessibility
 
-function LoginModal() {
+function UserModal() {
   const [modalIsOpen, setModalIsOpen] = useState(true);
   const [showRegistration, setShowRegistration] = useState(false);
   const [buttonText, setButtonText] = useState('Register'); // Initial button text
@@ -54,5 +54,5 @@ function LoginModal() {
   );
 }
 
-export default LoginModal;
+export default UserModal;
 

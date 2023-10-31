@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import "./LoginRegistration.css"
+
 function RegistrationForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
