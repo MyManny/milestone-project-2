@@ -1,7 +1,8 @@
+// UserModal.js
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import LoginForm from './LoginUser';
 import RegistrationForm from './RegistrationForm';
+import LoginForm from './LoginUser';
 
 Modal.setAppElement('#root'); // Set the root element for accessibility
 
@@ -39,11 +40,7 @@ function UserModal() {
       style={customStyles} // Apply the customStyles
     >
       <h2 className="login17">Login</h2>
-      {showRegistration ? (
-        <RegistrationForm />
-      ) : (
-        <LoginForm />
-      )}
+      {showRegistration ? <RegistrationForm /> : <LoginForm />}
       <div>
         <p className="noAccount">Don't have an account?</p>
         <button className="button-17" onClick={showRegistration ? closeRegistration : openRegistration}>
@@ -55,4 +52,5 @@ function UserModal() {
 }
 
 export default UserModal;
+
 

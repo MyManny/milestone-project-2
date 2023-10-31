@@ -8,7 +8,7 @@ import "./LoginRegistration.css"
 function RegistrationForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5002";
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
