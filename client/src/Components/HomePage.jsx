@@ -1,6 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-export default function HomePage({ isDarkMode, toggleDarkMode }) {
+export default function HomePage() {
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem("mode");
+    return savedMode === "dark";
+  });
+
   function handleButtonClick() {
     const plusButton = document.querySelector(".plus--btn");
     plusButton.classList.add("spin");
@@ -10,8 +15,8 @@ export default function HomePage({ isDarkMode, toggleDarkMode }) {
   }
 
   const handleDarkModeClick = () => {
-    toggleDarkMode();
-  }
+    setIsDarkMode((prevMode) => !prevMode);
+  };
 
   useEffect(() => {
     const background = document.querySelector(".home--background");
@@ -25,15 +30,6 @@ export default function HomePage({ isDarkMode, toggleDarkMode }) {
     }
   }, [isDarkMode]);
 
-  useEffect(() => {
-    const savedMode = localStorage.getItem("mode");
-  
-    if (savedMode === "dark" && !isDarkMode) {
-      toggleDarkMode();
-    } else if (savedMode === "light" && isDarkMode) {
-      toggleDarkMode();
-    }
-  }, [toggleDarkMode, isDarkMode]);
 
   return (
     <div className={isDarkMode ? "home--background dark--mode" : "home--background"}>
