@@ -1,6 +1,7 @@
 body {
   background-color: #e7eef1;
   align-items: center;
+  overscroll-behavior: none;
 }
 
 .home--container {
