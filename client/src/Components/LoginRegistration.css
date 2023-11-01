@@ -121,3 +121,19 @@
       padding :20px;
     
   }
+ 
+  .dark--mode--btn {
+    display: flex;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    transform: scale(1);
+    transition: transform 0.3s;
+    width: 25px;
+    height: 40px;
+  }
+  
+  .dark--mode--btn:hover {
+    cursor: pointer;
+    transform: scale(1.3);
+  }
