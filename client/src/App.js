@@ -1,10 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
-import logo from "./logo.svg";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import UserModal from './Components/UserModal';
+import HomePage from "./Components/HomePage";
+import LoginForm from './Components/LoginUser';
+import RegistrationForm from './Components/RegistrationForm';
 import "./App.css";
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [message, setMessage] = useState("Loading...");
   const [secret, setSecret] = useState("Loading...");
 
@@ -15,28 +19,27 @@ function App() {
       setMessage(resp.data.message);
       setSecret(resp.data.secret);
     });
-  }, []);
+  }, [API_URL]);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <p> Brett is pushing something </p>
-          Learn React
-          <p> Ben McConnaughy is trying to make the branch work </p>
-          <p> this is seth </p>
-          <p> Esteban Sepulveda </p>
-        </a>
-        <p> DavidVidal </p>
-      </header>
+    <div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<UserModal />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<RegistrationForm />} />
+        <Route
+          path="/"
+          element={<HomePage isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />}
+        />
+      </Routes>
+    </Router>
+    
+      <HomePage />
     </div>
   );
 }
