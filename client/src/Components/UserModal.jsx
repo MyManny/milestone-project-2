@@ -11,14 +11,9 @@ function UserModal() {
   const [showRegistration, setShowRegistration] = useState(false);
   const [buttonText, setButtonText] = useState('Register'); // Initial button text
 
-  const openRegistration = () => {
-    setShowRegistration(true);
-    setButtonText('Login'); // Update button text to 'Login' when switching to registration
-  };
-
-  const closeRegistration = () => {
-    setShowRegistration(false);
-    setButtonText('Register'); // Reset button text to 'Register' when switching back to login
+  const toggleRegistration = () => {
+    setShowRegistration(!showRegistration);
+    setButtonText(showRegistration ? 'Register' : 'Login');
   };
 
   const customStyles = {
@@ -37,13 +32,13 @@ function UserModal() {
     <Modal
       isOpen={modalIsOpen}
       onRequestClose={() => setModalIsOpen(false)}
-      style={customStyles} // Apply the customStyles
+      style={customStyles}
     >
-      <h2 className="login17">Login</h2>
+      <h2 className="login17">{showRegistration ? 'Register' : 'Login'}</h2>
       {showRegistration ? <RegistrationForm /> : <LoginForm />}
       <div>
         <p className="noAccount">Don't have an account?</p>
-        <button className="button-17" onClick={showRegistration ? closeRegistration : openRegistration}>
+        <button className="button-17" onClick={toggleRegistration}>
           {buttonText}
         </button>
       </div>
@@ -52,5 +47,4 @@ function UserModal() {
 }
 
 export default UserModal;
-
 
