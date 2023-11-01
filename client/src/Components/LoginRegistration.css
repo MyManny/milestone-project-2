@@ -137,3 +137,11 @@
     cursor: pointer;
     transform: scale(1.3);
   }
+
+  .dark--mode .home--container {
+    background-color: #010823;
+    color: #fff; 
+  }
+  .dark--mode--fill-2 {
+    fill: #000;
+  }

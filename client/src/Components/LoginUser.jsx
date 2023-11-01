@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 import "./LoginRegistration.css"
 
-function LoginUser() {
+function LoginUser({onLoginSuccess}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
@@ -24,7 +24,8 @@ function LoginUser() {
             console.log(response);
             localStorage.setItem("token", response.data.token);
             // navigate("/todos");
-        })
+            onLoginSuccess();
+          })
         .catch((error) => {
             console.log(error);
         });
