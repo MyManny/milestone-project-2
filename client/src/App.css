@@ -60,6 +60,25 @@ body {
   transform: scale(1.3);
 }
 
+.home--background {
+  background-color: #e7eef1;
+}
+
+.dark--mode .home--container {
+  background-color: #010823;
+  color: #fff; 
+}
+
+.light--mode--fill {
+  fill: #000; 
+}
+
+/* For dark mode */
+.dark--mode--fill {
+  fill: #fff;
+}
+
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -68,3 +87,4 @@ body {
     transform: rotate(180deg);
   }
 }
+
