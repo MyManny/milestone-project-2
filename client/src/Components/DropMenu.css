@@ -1,0 +1,23 @@
+code {
+    font-family: source-pro, Menlo, Monaco, Conolas 'Courier New',
+    monospace;
+}
+
+ul {
+   list-style: none; 
+}
+
+a {
+    text-decoration: none;
+}
+
+.menu-trigger img{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+

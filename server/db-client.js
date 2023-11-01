@@ -55,6 +55,7 @@ class StableClient {
 
     async query(...args) {
         await this.connect(); // Ensure connection before querying
+        console.log("runningQuery")
         return this._client.query(...args);
     }
 
