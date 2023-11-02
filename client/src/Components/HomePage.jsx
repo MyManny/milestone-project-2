@@ -1,15 +1,30 @@
 import React, { useState, useEffect } from "react";
 import TodoList from "./TodoList";
+import DropMenu from "./DropMenu"
 
 export default function HomePage() {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedMode = localStorage.getItem("mode");
     return savedMode === "dark";
   });
+
+  const [menu, setMenu] = useState(false);
+
+  function handleMenuClick() {
+    setMenu((prevState) => !prevState);
+
+    const listButton = document.querySelector(".list--btn");
+    listButton.classList.add("spin");
+    setTimeout(() => {
+      listButton.classList.remove("spin");
+    }, 1000);
+  };
+  
+  
   const [todos, setTodos] = useState(false);
 
   function handleButtonClick() {
-    setTodos(prevState => !prevState);
+    setTodos((prevState) => !prevState);
 
     const plusButton = document.querySelector(".plus--btn");
     plusButton.classList.add("spin");
@@ -21,18 +36,6 @@ export default function HomePage() {
   const handleDarkModeClick = () => {
     setIsDarkMode((prevMode) => !prevMode);
   };
-
-  useEffect(() => {
-    const background = document.querySelector(".home--background");
-    const body = document.querySelector("body");
-
-    localStorage.setItem("mode", isDarkMode ? "dark" : "light");
-
-    if (background && body) {
-      body.style.backgroundColor = isDarkMode ? "#1a1a1a" : "#e7eef1";
-      background.style.backgroundColor = isDarkMode ? "#1a1a1a" : "#e7eef1";
-    }
-  }, [isDarkMode]);
 
   useEffect(() => {
     const background = document.querySelector(".home--background");
@@ -77,11 +80,13 @@ export default function HomePage() {
             className={isDarkMode ? "dark--mode--fill" : "light--mode--fill"} />
           <title>Add List</title>
         </svg>
+        {menu && <DropMenu className={isDarkMode ? "dark--mode--fill" : "light--mode--fill"}/>}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="list--btn"
           height="1em"
           viewBox="0 0 448 512"
+          onClick={handleMenuClick}
         >
           <path d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z"
             className={isDarkMode ? "dark--mode--fill" : "light--mode--fill"} />
