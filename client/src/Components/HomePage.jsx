@@ -9,6 +9,7 @@ export default function HomePage() {
   const [todos, setTodos] = useState(false);
 
   function handleButtonClick() {
+    console.log("yo")
     setTodos(prevState => !prevState);
 
     const plusButton = document.querySelector(".plus--btn");
@@ -21,18 +22,6 @@ export default function HomePage() {
   const handleDarkModeClick = () => {
     setIsDarkMode((prevMode) => !prevMode);
   };
-
-  useEffect(() => {
-    const background = document.querySelector(".home--background");
-    const body = document.querySelector("body");
-
-    localStorage.setItem("mode", isDarkMode ? "dark" : "light");
-
-    if (background && body) {
-      body.style.backgroundColor = isDarkMode ? "#1a1a1a" : "#e7eef1";
-      background.style.backgroundColor = isDarkMode ? "#1a1a1a" : "#e7eef1";
-    }
-  }, [isDarkMode]);
 
   useEffect(() => {
     const background = document.querySelector(".home--background");

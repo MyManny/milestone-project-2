@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react'
-import appcss from "../components/App.css";
 
 function TodoForm(props) {
     const [input, setInput] = useState('');
+    const [placeholderInput, setPlaceholderInput] = useState('');
 
     const inputRef = useRef(null)
+    const placeholderInputRef = useRef(null);
 
-    useEffect(() => {
-        inputRef.current.focus()
-    })
+    const handlePlaceholderChange = e => {
+        setPlaceholderInput(e.target.value);
+    };
 
     const handleChange = e => {
         setInput(e.target.value);
@@ -19,30 +20,51 @@ function TodoForm(props) {
 
         props.onSubmit({
             id: Math.floor(Math.random() * 50000),
-            text: input
+            text: input,
+            placeholder: placeholderInput
         });
 
         setInput('')
+        setPlaceholderInput('');
     };
+
+    useEffect(() => {
+        inputRef.current.focus();
+      }, []);
 
     return (
         <div>
-            <form className='todo-form' onSubmit={handleSubmit}  >
+            <div>
                 <input
-                type="text" 
-                
+                    placeholder='Untitled List'
+                    value={placeholderInput}
+                    name='placeholderText'
+                    onChange={handlePlaceholderChange}
+                    ref={placeholderInputRef}
+                    onFocus={() => {
+                        inputRef.current && inputRef.current.blur();
+                    }}
                 />
-                <input 
-                type="text" 
-                placeholder='Add a todo' 
-                value={input} 
-                name='text' 
-                className='todo-input'
-                onChange={handleChange}
-                ref={inputRef}
-            />
-                <button className='todo-button'>Add Todo</button>
-            </form>
+            </div>
+
+            <div>
+                <form className='todo-form' onSubmit={handleSubmit}  >
+
+                    <input
+                        type="text"
+                        placeholder='Add a todo'
+                        value={input}
+                        name='text'
+                        className='todo-input'
+                        onChange={handleChange}
+                        ref={inputRef}
+                        onFocus={() => {
+                            placeholderInputRef.current.blur();
+                        }}
+                    />
+                    <button className='todo-button'>Add Todo</button>
+                </form>
+            </div>
         </div>
     )
 }
