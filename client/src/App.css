@@ -36,6 +36,10 @@ body {
   transition: transform 0.3s;
 }
 
+.list--btn.spin {
+  animation: spin 1s linear;
+}
+
 .plus--btn:hover {
   transform: scale(1.3);
   transition: transform 0.3s;
