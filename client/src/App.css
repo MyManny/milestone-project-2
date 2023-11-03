@@ -72,7 +72,11 @@ body {
   transition: transform 0.3s;
 }
 
-/* .plus--btn:hover {
+.list--btn.spin {
+  animation: spin 1s linear;
+}
+
+.plus--btn:hover {
   transform: scale(1.3);
   transition: transform 0.3s;
 } */
@@ -126,10 +130,15 @@ body {
   fill: #fff;
 }
 
-
-.dark--mode--fill-2 {
-  fill: #000;
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
 }
+
 
 .dark--mode--btn {
   display: flex;
