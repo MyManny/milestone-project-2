@@ -23,7 +23,43 @@ body {
   justify-content: flex-end;
 }
 
-.plus--btn,
+.plus--btn {
+  width: 45px;
+  height: 30px;
+  cursor: pointer;
+  transform-origin: center;
+  transition: transform 0.3s;
+}
+
+.plus--btn.spin {
+  transform: rotate(45deg);
+}
+
+.plus--btn.x {
+  transform: rotate(45deg);
+}
+
+@keyframes spin-animation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes stop-animation {
+  0% {
+    transform: rotate(45deg);
+  }
+  50% {
+    transform: rotate(135deg);
+  }
+  100% {
+    transform: rotate(135deg);
+  }
+}
+
 .list--btn {
   width: 45px;
   height: 30px;
@@ -37,15 +73,6 @@ body {
 }
 
 .list--btn.spin {
-  animation: spin 1s linear;
-}
-
-.plus--btn:hover {
-  transform: scale(1.3);
-  transition: transform 0.3s;
-}
-
-.plus--btn.spin {
   animation: spin 1s linear;
 }
 
