@@ -21,3 +21,27 @@ a {
     overflow: hidden;
 }
 
+.dropdown{
+    height:2rem;
+}
+
+.dropdown-menu{
+    width:20rem;
+    text-align:center;
+    color:black;
+    background:lightgray;
+    position: relative;
+    cursor: pointer;
+    padding:2rem;
+    border-radius: 25px;
+}
+
+.dropdown-menu:hover{
+    color:white;
+    background: #756f69
+}
+
+.dropdown-list:hover{
+    border:1px solid white;
+}
+
