@@ -22,20 +22,27 @@ export default function HomePage() {
   
   
   const [todos, setTodos] = useState(false);
+  const [isX, setIsX] = useState(false);
 
   function handleButtonClick() {
     setTodos((prevState) => !prevState);
-
-    const plusButton = document.querySelector(".plus--btn");
-    plusButton.classList.add("spin");
-    setTimeout(() => {
-      plusButton.classList.remove("spin");
-    }, 1000);
-  };
-
+    setIsX((prevIsX) => !prevIsX)
+  }
   const handleDarkModeClick = () => {
     setIsDarkMode((prevMode) => !prevMode);
   };
+
+  useEffect(() => {
+    const background = document.querySelector(".home--background");
+    const body = document.querySelector("body");
+
+    localStorage.setItem("mode", isDarkMode ? "dark" : "light");
+
+    if (background && body) {
+      body.style.backgroundColor = isDarkMode ? "#1a1a1a" : "#e7eef1";
+      background.style.backgroundColor = isDarkMode ? "#1a1a1a" : "#e7eef1";
+    }
+  }, [isDarkMode]);
 
   useEffect(() => {
     const background = document.querySelector(".home--background");
@@ -71,14 +78,16 @@ export default function HomePage() {
         {todos && <TodoList className={isDarkMode ? "dark--mode--fill" : "light--mode--fill"}/>}
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="plus--btn"
+          className={`plus--btn ${isX ? "x" : ""}`}
           height="1em"
           viewBox="0 0 448 512"
           onClick={handleButtonClick}
         >
-          <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
-            className={isDarkMode ? "dark--mode--fill" : "light--mode--fill"} />
-          <title>Add List</title>
+          <path
+            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+            className={isDarkMode ? "dark--mode--fill" : "light--mode--fill"}
+          />
+          <title>{isX ? "Close" : "Add List"}</title>
         </svg>
         {menu && <DropMenu className={isDarkMode ? "dark--mode--fill" : "light--mode--fill"}/>}
         <svg
