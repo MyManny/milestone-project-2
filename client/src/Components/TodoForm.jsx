@@ -39,7 +39,7 @@ function TodoForm(props) {
 
         // Create an object with the data you want to send to the server
         const todoData = {
-            text: input,
+            name: input,
         };
 
         // Send a POST request to the server

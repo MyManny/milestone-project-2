@@ -3,75 +3,89 @@ import TodoForm from "./TodoForm";
 import Todo from "./Todo";
 import axios from "axios";
 
-
 function TodoList() {
     const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
-    
     const [todos, setTodos] = useState([]);
 
-    const addTodo = todo => {
-        if (!todo.text || /^\s*$/.test(todo.text)) {
-            return;
-        }
+  const addTodo = (todo) => {
+    if (!todo.text || /^\s*$/.test(todo.text)) {
+      return;
+    }
 
-        const newTodos = [todo, ...todos]
+    // Create a new todo on the backend and add it to the local state
+    axios
+      .post('${API_URL}/todos', todo)
+      .then((response) => {
+        const newTodo = response.data;
+        setTodos((prevTodos) => [newTodo, ...prevTodos]);
+      })
+      .catch((error) => {
+        console.error("Error creating a todo:", error);
+      });
+  };
 
-        setTodos(newTodos)
-    };
+  const updateTodo = (todoId, newValue) => {
+    if (!newValue.text || /^\s*$/.test(newValue.text)) {
+      return;
+    }
 
-    const updateTodo = (todoId, newValue) => {
-        if (!newValue.text || /^\s*$/.test(newValue.text)) {
-            return;
-        }
-
-        setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item))
+    // Update the todo on the backend and update the local state
+    axios
+      .put(`${API_URL}/todos/${todoId}`, newValue)
+      .then((response) => {
+        const updatedTodo = response.data;
+        setTodos((prevTodos) =>
+          prevTodos.map((item) => (item.id === updatedTodo.id ? updatedTodo : item))
         );
-    };
+      })
+      .catch((error) => {
+        console.error("Error updating a todo:", error);
+      });
+  };
 
-    const removeTodo = id => {
-        const removeArr = [...todos].filter(todo => todo.id !== id)
+  const removeTodo = (id) => {
+    // Delete the todo from the backend and update the local state
+    axios
+      .delete(`${API_URL}/todos/${id}`)
+      .then(() => {
+        setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+      })
+      .catch((error) => {
+        console.error("Error deleting a todo:", error);
+      });
+  };
+  const completeTodo = (id) => {
+    
 
-        setTodos(removeArr);
-    };
-
-    const completeTodo = id => {
-        let updatedTodos = todos.map(todo => {
-            if (todo.id === id) {
-                todo.isComplete = !todo.isComplete
-            }
-            return todo
-        });
-        setTodos(updatedTodos);
-    };
-
-            useEffect(() => {
-                const token = localStorage.getItem("token");
-                axios
-                    .get(`${API_URL}/todos`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    })
-                    .then((response) => {
-                        console.log(response);
-                        setTodos(response.data.todos);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-                            }, []);
-
-    return (
-        <div>
-            <TodoForm onSubmit={addTodo} />
-            <Todo
-                todos={todos}
-                completeTodo={completeTodo}
-                removeTodo={removeTodo}
-                updateTodo={updateTodo}
-            />
-        </div>
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, isComplete: !todo.isComplete } : todo
+      )
     );
-};
+  };
+  useEffect(() => {
+    // Fetch todos from the backend when the component mounts
+    axios
+      .get('${API_URL}/todos')
+      .then((response) => {
+        setTodos(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching todos:", error);
+      });
+  }, []);
 
-export default TodoList
+  return (
+    <div>
+      <TodoForm onSubmit={addTodo} />
+      <Todo
+        todos={todos}
+        completeTodo={completeTodo}
+        removeTodo={removeTodo}
+        updateTodo={updateTodo}
+      />
+    </div>
+  );
+}
+
+export default TodoList;
