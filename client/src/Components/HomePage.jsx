@@ -1,23 +1,33 @@
 import React, { useState, useEffect } from "react";
 import TodoList from "./TodoList";
+import DropMenu from "./DropMenu"
 
 export default function HomePage() {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedMode = localStorage.getItem("mode");
     return savedMode === "dark";
   });
-  const [todos, setTodos] = useState(false);
 
-  function handleButtonClick() {
-    setTodos(prevState => !prevState);
+  const [menu, setMenu] = useState(false);
 
-    const plusButton = document.querySelector(".plus--btn");
-    plusButton.classList.add("spin");
+  function handleMenuClick() {
+    setMenu((prevState) => !prevState);
+
+    const listButton = document.querySelector(".list--btn");
+    listButton.classList.add("spin");
     setTimeout(() => {
-      plusButton.classList.remove("spin");
+      listButton.classList.remove("spin");
     }, 1000);
   };
+  
+  
+  const [todos, setTodos] = useState(false);
+  const [isX, setIsX] = useState(false);
 
+  function handleButtonClick() {
+    setTodos((prevState) => !prevState);
+    setIsX((prevIsX) => !prevIsX)
+  }
   const handleDarkModeClick = () => {
     setIsDarkMode((prevMode) => !prevMode);
   };
@@ -68,20 +78,24 @@ export default function HomePage() {
         {todos && <TodoList className={isDarkMode ? "dark--mode--fill" : "light--mode--fill"}/>}
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="plus--btn"
+          className={`plus--btn ${isX ? "x" : ""}`}
           height="1em"
           viewBox="0 0 448 512"
           onClick={handleButtonClick}
         >
-          <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
-            className={isDarkMode ? "dark--mode--fill" : "light--mode--fill"} />
-          <title>Add List</title>
+          <path
+            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+            className={isDarkMode ? "dark--mode--fill" : "light--mode--fill"}
+          />
+          <title>{isX ? "Close" : "Add List"}</title>
         </svg>
+        {menu && <DropMenu className={isDarkMode ? "dark--mode--fill" : "light--mode--fill"}/>}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="list--btn"
           height="1em"
           viewBox="0 0 448 512"
+          onClick={handleMenuClick}
         >
           <path d="M40 48C26.7 48 16 58.7 16 72v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z"
             className={isDarkMode ? "dark--mode--fill" : "light--mode--fill"} />
