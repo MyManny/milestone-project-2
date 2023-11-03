@@ -6,6 +6,7 @@ import HomePage from "./Components/HomePage";
 import LoginForm from './Components/LoginUser';
 import RegistrationForm from './Components/RegistrationForm';
 import "./App.css";
+import "./Components/todo.css"
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <div>
+    <HomePage isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
     <Router>
       <Routes>
         <Route path="/" element={<UserModal />} />
@@ -38,8 +40,6 @@ function App() {
         />
       </Routes>
     </Router>
-    
-      <HomePage />
     </div>
   );
 }
