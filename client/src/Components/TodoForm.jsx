@@ -19,7 +19,7 @@ function TodoForm(props) {
         e.preventDefault();
 
         props.onSubmit({
-            id: Math.floor(Math.random() * 50000),
+            id: Math.floor(Math.random() * 500000),
             text: input,
             placeholder: placeholderInput
         });
@@ -30,26 +30,25 @@ function TodoForm(props) {
 
     useEffect(() => {
         inputRef.current.focus();
-      }, []);
+    }, []);
 
     return (
         <div>
             <div>
-                <input
-                    placeholder='Untitled List'
-                    value={placeholderInput}
-                    name='placeholderText'
-                    onChange={handlePlaceholderChange}
-                    ref={placeholderInputRef}
-                    onFocus={() => {
-                        inputRef.current && inputRef.current.blur();
-                    }}
-                />
-            </div>
-
-            <div>
                 <form className='todo-form' onSubmit={handleSubmit}  >
 
+                    <div>
+                        <input
+                            placeholder='Untitled List'
+                            value={placeholderInput}
+                            name='placeholderText'
+                            onChange={handlePlaceholderChange}
+                            ref={placeholderInputRef}
+                            onFocus={() => {
+                                inputRef.current && inputRef.current.blur();
+                            }}
+                        />
+                    </div>
                     <input
                         type="text"
                         placeholder='Add a todo'
