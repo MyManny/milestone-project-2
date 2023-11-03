@@ -34,6 +34,7 @@ function TodoForm(props) {
         // Create an object with the data you want to send to the server
         const todoData = {   
             name: input,
+            title: PlaceholderInput,
         };
 
         // Send a POST request to the server
@@ -68,6 +69,7 @@ function TodoForm(props) {
 
                     <div>
                         <input
+                            type="text"
                             className="todo-title"
                             placeholder='Untitled List'
                             value={placeholderInput}
