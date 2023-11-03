@@ -38,7 +38,7 @@ function TodoForm(props) {
         const token = localStorage.getItem('token');
 
         // Create an object with the data you want to send to the server
-        const todoData = {
+        const todoData = {   
             name: input,
         };
 
