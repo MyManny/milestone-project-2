@@ -3,7 +3,7 @@ const client = require("./db-client");
 async function listTodosForUser(token) {
     const result = await client.query(
         `
-            SELECT "Todo".id, "Todo".name, "Todo".completed 
+            SELECT "Todo".id,"Todo".title, "Todo".name, "Todo".completed 
             FROM "Todo"
             JOIN "User" ON "Todo".user_id = "User".id 
             WHERE "User".token = $1
@@ -14,14 +14,14 @@ async function listTodosForUser(token) {
     return result.rows;
 }
 
-async function createTodoForUser(token, name) {
+async function createTodoForUser(token, title, name) {
     const result = await client.query(
         `
-            INSERT INTO "Todo" (name, user_id)
+            INSERT INTO "Todo" (title, name, user_id)
             SELECT $1, "User".id FROM "User" WHERE "User".token = $2
-            RETURNING "Todo".id, "Todo".name, "Todo".completed
+            RETURNING "Todo".id,"Todo".title, "Todo".name, "Todo".completed
         `,
-        [name, token]
+        [title, name, token]
     );
     return result.rows[0]; // Return the newly created Todo item
 }
@@ -35,7 +35,7 @@ async function updateTodoItem(token, todoId, updatedName, updatedCompleted) {
             WHERE "Todo".id = $3
             AND "User".token = $4
             AND "Todo".user_id = "User".id
-            RETURNING "Todo".id, "Todo".name, "Todo".completed
+            RETURNING "Todo".id, "Todo".title, "Todo".name, "Todo".completed
         `,
         [updatedName, updatedCompleted, todoId, token]
     );

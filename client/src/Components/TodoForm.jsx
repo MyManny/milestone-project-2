@@ -62,7 +62,7 @@ function TodoForm(props) {
     }, []);
 
     return (
-        <div>
+        <div className="todo-form-container">
             <div>
                 <form className='todo-form' onSubmit={handleSubmit}  >
 
