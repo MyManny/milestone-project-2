@@ -76,11 +76,6 @@ body {
   animation: spin 1s linear;
 }
 
-.plus--btn:hover {
-  transform: scale(1.3);
-  transition: transform 0.3s;
-} */
-
 .dark--mode--btn {
   display: flex;
   position: absolute;
