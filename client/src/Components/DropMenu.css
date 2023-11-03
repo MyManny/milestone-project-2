@@ -33,11 +33,12 @@ a {
     position: relative;
     cursor: pointer;
     padding:2rem;
+    border-radius: 25px;
 }
 
 .dropdown-menu:hover{
     color:white;
-    background:grey
+    background: grey
 }
 
 .dropdown-list:hover{

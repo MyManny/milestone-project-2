@@ -13,7 +13,7 @@ function Dropdown() {
   return (
     <div className="dropdown">
         <div className="dropdown-menu" onMouseEnter= {showDropdown} onMouseLeave={hideDropdown}>
-        Dropdown
+        My todo list
 
         {state ?(<ul className="dropdown-list" onMouseEnter={showDropdown}>
         <li>1st value</li>
