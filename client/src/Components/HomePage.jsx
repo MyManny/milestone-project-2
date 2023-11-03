@@ -9,7 +9,7 @@ export default function HomePage() {
   });
 
   const [menu, setMenu] = useState(false);
-
+  
   function handleMenuClick() {
     setMenu((prevState) => !prevState);
 
@@ -19,7 +19,6 @@ export default function HomePage() {
       listButton.classList.remove("spin");
     }, 1000);
   };
-  
   
   const [todos, setTodos] = useState(false);
   const [isX, setIsX] = useState(false);
@@ -31,18 +30,6 @@ export default function HomePage() {
   const handleDarkModeClick = () => {
     setIsDarkMode((prevMode) => !prevMode);
   };
-
-  useEffect(() => {
-    const background = document.querySelector(".home--background");
-    const body = document.querySelector("body");
-
-    localStorage.setItem("mode", isDarkMode ? "dark" : "light");
-
-    if (background && body) {
-      body.style.backgroundColor = isDarkMode ? "#1a1a1a" : "#e7eef1";
-      background.style.backgroundColor = isDarkMode ? "#1a1a1a" : "#e7eef1";
-    }
-  }, [isDarkMode]);
 
   useEffect(() => {
     const background = document.querySelector(".home--background");
