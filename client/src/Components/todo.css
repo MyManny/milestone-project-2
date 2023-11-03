@@ -33,6 +33,7 @@
   
   .todo-input::placeholder {
     color: rgb(34, 32, 30) 100%;
+    color: rgb(124, 119, 119);
   }
   
   .todo-button {
@@ -133,4 +134,4 @@
   
   .dark--mode--fill {
     fill: #fff;
-  }
+  } 

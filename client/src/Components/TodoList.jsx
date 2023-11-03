@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoForm from "./TodoForm";
 import Todo from "./Todo";
+import axios from "axios";
 
 
 function TodoList() {
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+    
     const [todos, setTodos] = useState([]);
 
     const addTodo = todo => {
@@ -40,6 +43,23 @@ function TodoList() {
         });
         setTodos(updatedTodos);
     };
+
+            useEffect(() => {
+                const token = localStorage.getItem("token");
+                axios
+                    .get(`${API_URL}/todos`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    })
+                    .then((response) => {
+                        console.log(response);
+                        setTodos(response.data.todos);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+                            }, []);
 
     return (
         <div>
