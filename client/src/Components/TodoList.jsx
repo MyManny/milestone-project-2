@@ -11,10 +11,14 @@ function TodoList() {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return;
     }
+    const newTodos = [todo, ...todos]
+        setTodos(newTodos)
 
+    console.log(todo)
+    console.log("please")
     // Create a new todo on the backend and add it to the local state
     axios
-      .post('${API_URL}/todos', todo)
+      .post(`${API_URL}/todos`, todo)
       .then((response) => {
         const newTodo = response.data;
         setTodos((prevTodos) => [newTodo, ...prevTodos]);
@@ -66,7 +70,7 @@ function TodoList() {
   useEffect(() => {
     // Fetch todos from the backend when the component mounts
     axios
-      .get('${API_URL}/todos')
+      .get(`${API_URL}/todos`)
       .then((response) => {
         setTodos(response.data);
       })

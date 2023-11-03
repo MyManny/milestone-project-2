@@ -21,10 +21,16 @@ function TodoForm(props) {
     };
 
     const handleSubmit = (e) => {
+        console.log("im him")
         e.preventDefault();
-
         const token = localStorage.getItem('token');
-
+        console.log(token)
+        console.log("hello")
+        props.onSubmit({
+            id: Math.floor(Math.random() * 500000),
+            text: input,
+            placeholder: placeholderInput
+        });
         // Create an object with the data you want to send to the server
         const todoData = {   
             name: input,
