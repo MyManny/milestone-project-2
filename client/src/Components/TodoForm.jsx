@@ -4,17 +4,14 @@ import axios from "axios";
 function TodoForm(props) {
     const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
     const [input, setInput] = useState('');
-    const [placeholderInput, setPlaceholderInput] = useState('');
+    const [titleInput, setTitleInput] = useState('');
 
     const inputRef = useRef(null)
     const placeholderInputRef = useRef(null);
 
     const handlePlaceholderChange = e => {
-        setPlaceholderInput(e.target.value);
+        setTitleInput(e.target.value);
     };
-    useEffect(() => {
-        inputRef.current.focus()
-    })
 
     const handleChange = e => {
         setInput(e.target.value);
@@ -25,17 +22,17 @@ function TodoForm(props) {
         e.preventDefault();
         const token = localStorage.getItem('token');
         console.log(token)
-        console.log("hello")
-        props.onSubmit({
-            id: Math.floor(Math.random() * 500000),
-            text: input,
-            placeholder: placeholderInput
-        });
-        // Create an object with the data you want to send to the server
+        
         const todoData = {   
             name: input,
-            title: PlaceholderInput,
+            title: titleInput,
         };
+        
+        props.onSubmit(
+            todoData
+        );
+        // Create an object with the data you want to send to the server
+        
 
         // Send a POST request to the server
         axios
@@ -55,7 +52,7 @@ function TodoForm(props) {
             });
 
         setInput('')
-        setPlaceholderInput('');
+        setTitleInput('');
     };
 
     useEffect(() => {
@@ -69,10 +66,10 @@ function TodoForm(props) {
 
                     <div>
                         <input
-                            type="text"
+                        
                             className="todo-title"
                             placeholder='Untitled List'
-                            value={placeholderInput}
+                            value={titleInput}
                             name='placeholderText'
                             onChange={handlePlaceholderChange}
                             ref={placeholderInputRef}
