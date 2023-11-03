@@ -68,6 +68,7 @@ function TodoForm(props) {
 
                     <div>
                         <input
+                            className="todo-title"
                             placeholder='Untitled List'
                             value={placeholderInput}
                             name='placeholderText'

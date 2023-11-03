@@ -48,6 +48,10 @@
     text-transform: capitalize;
   }
   
+.todo-input:hover {
+  border-color: rgb(37, 117, 157);
+}
+
   .todo-input.edit {
     border: 2px solid rgb(124, 119, 119)
   }
@@ -136,3 +140,14 @@
   .dark--mode--fill {
     fill: #fff;
   } 
+
+.todo-title {
+  background: transparent;
+  border: 2px solid rgb(34, 32, 30);
+  border-radius: 5px;
+  color: rgb(124, 119, 119);
+}
+
+  .todo-title:hover {
+    border-color: rgb(37, 117, 157);
+  }
