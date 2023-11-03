@@ -20,6 +20,14 @@
   .todo-form {
     margin-bottom: 32px;
   }
+
+  .todo-form-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 55vh;
+    height: 250px;
+  }
   
   .todo-input {
     padding: 14px 32px 14px 16px;
