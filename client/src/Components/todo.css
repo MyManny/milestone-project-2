@@ -151,7 +151,7 @@
 
 .todo-title {
   background: transparent;
-  border: 2px solid rgb(34, 32, 30);
+  border: none;
   border-radius: 5px;
   color: rgb(124, 119, 119);
 }
