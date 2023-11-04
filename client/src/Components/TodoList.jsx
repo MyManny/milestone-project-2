@@ -1,81 +1,84 @@
-import React, { useState, useEffect } from "react";
-import TodoForm from "./TodoForm";
-import Todo from "./Todo";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import TodoForm from './TodoForm';
+import Todo from './Todo';
+import axios from 'axios';
 
 function TodoList() {
-    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
-    const [todos, setTodos] = useState([]);
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+  const [todos, setTodos] = useState([]);
+  const token = localStorage.getItem('token');
 
   const addTodo = (todo) => {
-    if (!todo.text || /^\s*$/.test(todo.text)) {
-      return;
-    }
-    const newTodos = [todo, ...todos]
-        setTodos(newTodos)
-
-    console.log(todo)
-    console.log("please")
+    console.log(todo);
+    console.log('please');
     // Create a new todo on the backend and add it to the local state
     axios
-      .post(`${API_URL}/todos`, todo)
+      .post(`${API_URL}/todos`, todo, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
-        const newTodo = response.data;
+        const newTodo = response.data.todo;
         setTodos((prevTodos) => [newTodo, ...prevTodos]);
       })
       .catch((error) => {
-        console.error("Error creating a todo:", error);
+        console.error('Error creating a todo:', error);
       });
   };
 
   const updateTodo = (todoId, newValue) => {
-    if (!newValue.text || /^\s*$/.test(newValue.text)) {
-      return;
-    }
-
     // Update the todo on the backend and update the local state
     axios
-      .put(`${API_URL}/todos/${todoId}`, newValue)
+      .put(`${API_URL}/todos/${todoId}`, newValue, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
-        const updatedTodo = response.data;
+        const updatedTodo = response.data.todo;
         setTodos((prevTodos) =>
           prevTodos.map((item) => (item.id === updatedTodo.id ? updatedTodo : item))
         );
       })
       .catch((error) => {
-        console.error("Error updating a todo:", error);
+        console.error('Error updating a todo:', error);
       });
   };
 
   const removeTodo = (id) => {
     // Delete the todo from the backend and update the local state
     axios
-      .delete(`${API_URL}/todos/${id}`)
+      .delete(`${API_URL}/todos/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => {
         setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
       })
       .catch((error) => {
-        console.error("Error deleting a todo:", error);
+        console.error('Error deleting a todo:', error);
       });
   };
   const completeTodo = (id) => {
-    
-
     setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, isComplete: !todo.isComplete } : todo
-      )
+      prevTodos.map((todo) => (todo.id === id ? { ...todo, isComplete: !todo.isComplete } : todo))
     );
   };
   useEffect(() => {
     // Fetch todos from the backend when the component mounts
     axios
-      .get(`${API_URL}/todos`)
+      .get(`${API_URL}/todos`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
-        setTodos(response.data);
+        setTodos(response.data.todos);
       })
       .catch((error) => {
-        console.error("Error fetching todos:", error);
+        console.error('Error fetching todos:', error);
       });
   }, []);
 
