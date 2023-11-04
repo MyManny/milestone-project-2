@@ -20,6 +20,13 @@
   .todo-form {
     margin-bottom: 32px;
   }
+
+  .todo-form-container {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
   
   .todo-input {
     padding: 14px 32px 14px 16px;
@@ -35,7 +42,16 @@
     color: rgb(124, 119, 119);
     color: rgb(124, 119, 119);
   }
-  
+
+.todo-title {
+  background: transparent;
+  border-radius: 5px;
+  color: rgb(124, 119, 119);
+}
+
+  .todo-title:hover {
+    border-color: rgb(37, 117, 157);
+  }
   
   .todo-button {
     padding: 16px;
@@ -48,6 +64,10 @@
     text-transform: capitalize;
   }
   
+.todo-input:hover {
+  border-color: rgb(37, 117, 157);
+}
+
   .todo-input.edit {
     border: 2px solid rgb(124, 119, 119)
   }
@@ -136,3 +156,36 @@
   .dark--mode--fill {
     fill: #fff;
   } 
+  
+  .todo-title, .todo-input {
+    background: #f0f0f0;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    transition: background 0.3s, border 0.3s; 
+  }
+  
+  .todo-title:hover, .todo-input:hover {
+    background: #f5f5f5; 
+    border: 1px solid #ddd;
+  }
+  
+  .todo-button {
+    background: rgb(62, 116, 42);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 16px 28px;
+    font-size: 20px;
+    font-family: 'Arial', sans-serif;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .todo-button:hover {
+    background: rgb(54, 102, 36);
+  }
+  

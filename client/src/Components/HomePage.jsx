@@ -62,7 +62,7 @@ export default function HomePage() {
          className={isDarkMode ? "dark--mode--fill" : "light--mode--fill"} />
           <title>DarkMode Toggle</title>
         </svg>
-        {todos && <TodoList/>}
+        {todos && <TodoList />}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className={`plus--btn ${isX ? "x" : ""}`}

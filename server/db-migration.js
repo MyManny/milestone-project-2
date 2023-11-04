@@ -13,6 +13,7 @@ const createTodoTableQuery = `
 CREATE TABLE IF NOT EXISTS "Todo" (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES "User"(id),
+    title VARCHAR(255) NOT NULL DEFAULT '',
     name VARCHAR(255) NOT NULL,
     completed BOOLEAN DEFAULT false
 );`;

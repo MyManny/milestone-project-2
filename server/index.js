@@ -67,7 +67,7 @@ app.post("/logout", express.json(), async (req, res) => {
 
 app.get("/todos", express.json(), async (req, res) => {
     try {
-        const token = req.headers.authorization.split(" ")[1];
+        const token = req.headers.authorization.split("")[1];
         const todos = await listTodosForUser(token);
         res.send({
             message: "Todos retrieved successfully!",
@@ -84,8 +84,8 @@ app.get("/todos", express.json(), async (req, res) => {
 app.post("/todos", express.json(), async (req, res) => {
     try {
         const token = req.headers.authorization.split(" ")[1];
-        const { name } = req.body;
-        const todo = await createTodoForUser(token, name);
+        const { title, name } = req.body;
+        const todo = await createTodoForUser(token, title, name);
         res.send({
             message: "Todo created successfully!",
             todo,
@@ -102,8 +102,8 @@ app.put("/todos/:id", express.json(), async (req, res) => {
     try {
         const token = req.headers.authorization.split(" ")[1];
         const { id } = req.params;
-        const { name, completed } = req.body;
-        const todo = await updateTodoItem(token, id, name, completed);
+        const { title, name, completed } = req.body;
+        const todo = await updateTodoItem(token, id, title, name, completed);
         res.send({
             message: "Todo updated successfully!",
             todo,

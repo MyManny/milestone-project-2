@@ -1,16 +1,34 @@
 import React, { useEffect, useState, useRef } from "react";
-
-
 import './DropMenu.css'
 
+
 function Dropdown() {
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
   const [state, setstate] =useState(false);
+  const [todos, setTodos] = useState([]);
+  
   const showDropdown=()=>{
     setstate(true);
   }
   const hideDropdown=()=>{
     setstate(false);
   }
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    axios
+        .get(`${API_URL}/todos`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        .then((response) => {
+            console.log(response);
+            setTodos(response.data.todos);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}, []);
 
   return (
     <div className="dropdown">
@@ -18,7 +36,9 @@ function Dropdown() {
         My todo list
 
         {state ?(<ul className="dropdown-list" onMouseEnter={showDropdown}>
-        <li>1st value</li>
+        {todos.map((todo) => (
+                    <li key={todo.id}>{todo.name}</li>
+                ))}
         <li>2nd value</li>
         <li>3rd value</li>
         <li>4th value</li>
