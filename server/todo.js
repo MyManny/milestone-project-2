@@ -26,7 +26,7 @@ async function createTodoForUser(token, title, name) {
     return result.rows[0]; // Return the newly created Todo item
 }
 
-async function updateTodoItem(token, todoId, updatedName, updatedTitle, updatedCompleted) {
+async function updateTodoItem(token, todoId, updatedTitle, updatedName, updatedCompleted) {
     const result = await client.query(
         `
             UPDATE "Todo"
