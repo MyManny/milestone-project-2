@@ -37,11 +37,11 @@ function Dropdown() {
 
         {state ?(<ul className="dropdown-list" onMouseEnter={showDropdown}>
         {todos.map((todo) => (
-                    <li key={todo.id}>{todo.name}</li>
+                    <li key={todo.id}>
+                      {todo.title}:
+                      {todo.name}</li>
                 ))}
-        <li>2nd value</li>
-        <li>3rd value</li>
-        <li>4th value</li>
+                
         </ul>):
         null}
 
