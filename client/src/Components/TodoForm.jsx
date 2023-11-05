@@ -23,10 +23,7 @@ function TodoForm(props) {
   }, []);
         
   const handleSubmit = (e) => {
-    console.log('im him');
     e.preventDefault();
-    console.log('hello');
-
 
         // Create an object with the data you want to send to the server
     const todoData = {
