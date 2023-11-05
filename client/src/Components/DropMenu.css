@@ -29,7 +29,7 @@ a {
     width:20rem;
     text-align:center;
     color:black;
-    background:lightgray;
+    color: rgb(124, 119, 119);
     position: relative;
     cursor: pointer;
     padding:2rem;
@@ -43,5 +43,6 @@ a {
 
 .dropdown-list:hover{
     border:1px solid white;
+    border-radius: 25px;
 }
 
