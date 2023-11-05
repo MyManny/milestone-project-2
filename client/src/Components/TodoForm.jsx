@@ -48,7 +48,7 @@ function TodoForm(props) {
   }, []);
   return (
     <div>
-      <div>
+      <div >
         <form className='todo-form' onSubmit={handleSubmit}>
           <div>
             <input
