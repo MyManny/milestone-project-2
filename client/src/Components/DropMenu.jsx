@@ -1,11 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import axios from "axios";
-import TodoList from "./TodoList";
-import TodoForm from "./TodoForm";
-import Todo from "./Todo";
-
 import './DropMenu.css'
-
+import axios from "axios";
 
 function Dropdown() {
   const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
@@ -38,7 +33,7 @@ function Dropdown() {
   return (
     <div className="dropdown">
         <div className="dropdown-menu" onMouseEnter= {showDropdown} onMouseLeave={hideDropdown}>
-        Dropdown
+        My todo list
 
         {state ?(<ul className="dropdown-list" onMouseEnter={showDropdown}>
         {todos.map((todo) => (
