@@ -53,10 +53,8 @@ function LoginUser({ onLoginSuccess }) {
           />
         </div>
       </div>
-      <button className='button-17' type='submit'>
-        Login
-      </button>
-      </form>
+      <button class="button-17" type="submit">Login</button>
+    </form>
   );
 }
 
