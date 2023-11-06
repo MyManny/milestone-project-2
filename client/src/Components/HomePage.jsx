@@ -14,10 +14,6 @@ export default function HomePage() {
     setMenu((prevState) => !prevState);
 
     const listButton = document.querySelector(".list--btn");
-    listButton.classList.add("spin");
-    setTimeout(() => {
-      listButton.classList.remove("spin");
-    }, 1000);
   };
   
   const [todos, setTodos] = useState(false);
