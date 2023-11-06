@@ -28,8 +28,8 @@ a {
 .dropdown-menu{
     width:20rem;
     text-align:center;
-    color:black;
-    background:lightgray;
+    color:White;
+    background: #756f69;
     position: relative;
     cursor: pointer;
     padding:2rem;
@@ -43,5 +43,7 @@ a {
 
 .dropdown-list:hover{
     border:1px solid white;
+    border-radius: 8px;
 }
+
 

@@ -10,9 +10,11 @@ function Dropdown() {
   const showDropdown=()=>{
     setstate(true);
   }
+  
   const hideDropdown=()=>{
     setstate(false);
   }
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
@@ -34,17 +36,14 @@ function Dropdown() {
     <div className="dropdown">
         <div className="dropdown-menu" onMouseEnter= {showDropdown} onMouseLeave={hideDropdown}>
         My todo list
-
         {state ?(<ul className="dropdown-list" onMouseEnter={showDropdown}>
         {todos.map((todo) => (
                     <li key={todo.id}>
                       {todo.title}:
                       {todo.name}</li>
-                ))}
-                
+                ))}       
         </ul>):
         null}
-
         </div>
     </div>
   )

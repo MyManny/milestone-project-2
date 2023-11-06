@@ -159,7 +159,7 @@
   
   .todo-title, .todo-input {
     background: #f0f0f0;
-    color: #555;
+    color: #756f69;
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 14px;
@@ -174,7 +174,7 @@
   }
   
   .todo-button {
-    background: rgb(62, 116, 42);
+    background: rgb(34, 32, 30);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -186,6 +186,6 @@
   }
   
   .todo-button:hover {
-    background: rgb(54, 102, 36);
+    background: #756f69;
   }
   
