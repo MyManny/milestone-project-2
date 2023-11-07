@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 function TodoForm(props) {
-    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
   const [input, setInput] = useState(props.edit ? props.edit.name : '');
   const [titleInput, setTitleInput] = useState(props.edit ? props.edit.title : '');
 

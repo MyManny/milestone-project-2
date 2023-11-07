@@ -33,7 +33,7 @@ a {
     position: relative;
     cursor: pointer;
     padding:2rem;
-    border-radius: 25px;
+    border-radius: 8px;
 }
 
 .dropdown-menu:hover{
@@ -47,3 +47,10 @@ a {
 }
 
 
+
+@media (max-width: 768px) {
+    .dropdown-menu {
+        width: 100%;
+        padding: 1vh;
+    }
+ }

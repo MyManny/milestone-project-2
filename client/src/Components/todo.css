@@ -188,4 +188,17 @@
   .todo-button:hover {
     background: #756f69;
   }
-  
+
+  @media (max-width: 768px) {
+    .todo-form {
+        padding-top: 55px;
+    }
+
+    .todo-input {
+        width: 100%;
+    }
+    
+    .todo-button {
+        width: 100%;
+    }
+}
