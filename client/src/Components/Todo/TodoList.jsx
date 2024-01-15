@@ -84,7 +84,7 @@ function TodoList() {
       .catch((error) => {
         console.error('Error fetching todos:', error);
       });
-  }, []);
+  }, [API_URL, token]);
 
   return (
     <div>

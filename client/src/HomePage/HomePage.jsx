@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import TodoList from "./TodoList";
-import DropMenu from "./DropMenu"
+import DropMenu from "../Components/DropMenu/DropMenu";
+import TodoList from "../Components/Todo/TodoList";
 
 export default function HomePage() {
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -13,7 +13,6 @@ export default function HomePage() {
   function handleMenuClick() {
     setMenu((prevState) => !prevState);
 
-    const listButton = document.querySelector(".list--btn");
   };
   
   const [todos, setTodos] = useState(false);

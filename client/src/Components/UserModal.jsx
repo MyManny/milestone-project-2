@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
-import RegistrationForm from './RegistrationForm';
-import LoginForm from './LoginUser';
+import RegistrationForm from './LoginRegistration/RegistrationForm';
+import LoginForm from './LoginRegistration/LoginUser';
 
-import './LoginRegistration.css';
+import './LoginRegistration/LoginRegistration.css';
 
 Modal.setAppElement('#root'); // Set the root element for accessibility
 
@@ -17,14 +17,12 @@ function UserModal() {
     setButtonText(showRegistration ? 'Register' : 'Login');
   };
 
+  // eslint-disable-next-line no-unused-vars
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedMode = localStorage.getItem("mode");
     return savedMode === "dark";
   });
 
-  const handleDarkModeClick = () => {
-    setIsDarkMode((prevMode) => !prevMode);
-  };
   const customStyles = {
     content: {
       top: '50%',

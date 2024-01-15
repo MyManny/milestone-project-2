@@ -1,35 +1,30 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-import './LoginRegistration.css';
+import '../LoginRegistration/LoginRegistration.css';
 
-function LoginUser({ onLoginSuccess }) {
+function RegistrationForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-  // const navigate = useNavigate();
-
-  
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-    .post(`${API_URL}/login`, {
+    .post(`${API_URL}/register`, {
       username: username,
       password: password,
     })
     .then((response) => {
-      console.log('Successfully logged in!');
-      console.log(response);
-      localStorage.setItem('token', response.data.token);
-      // navigate("/todos");
-      onLoginSuccess();
+      navigate('/login');
     })
     .catch((error) => {
       console.log(error);
     });
 };
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -53,10 +48,13 @@ function LoginUser({ onLoginSuccess }) {
           />
         </div>
       </div>
-      <button class="button-17" type="submit">Login</button>
+      <button className='button-17' type='submit'>
+        Register
+      </button>
+      
     </form>
   );
 }
 
-export default LoginUser;
+export default RegistrationForm;
 
