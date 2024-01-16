@@ -1,23 +1,29 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-redeclare */
+import React, { useState, useEffect, ReactNode } from 'react';
 import Modal from 'react-modal';
 import RegistrationForm from './LoginRegistration/RegistrationForm';
 import LoginForm from './LoginRegistration/LoginUser';
 
 import './LoginRegistration/LoginRegistration.css';
 
-Modal.setAppElement('#root'); // Set the root element for accessibility
+Modal.setAppElement('#root');
 
-function UserModal() {
+interface UserModalProps {
+  onClose: () => void;
+  children?: ReactNode;
+}
+
+const UserModal: React.FunctionComponent<UserModalProps> = ({ onClose, children }) => {
   const [modalIsOpen, setModalIsOpen] = useState(true);
   const [showRegistration, setShowRegistration] = useState(false);
-  const [buttonText, setButtonText] = useState('Register'); // Initial button text
+  const [buttonText, setButtonText] = useState('Register');
 
   const toggleRegistration = () => {
     setShowRegistration(!showRegistration);
     setButtonText(showRegistration ? 'Register' : 'Login');
   };
 
-  // eslint-disable-next-line no-unused-vars
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedMode = localStorage.getItem("mode");
     return savedMode === "dark";
@@ -43,25 +49,27 @@ function UserModal() {
 
     if (background && body) {
       body.style.backgroundColor = isDarkMode ? "#1a1a1a" : "#e7eef1";
-      background.style.backgroundColor = isDarkMode ? "#1a1a1a" : "#e7eef1";
+      (background as HTMLElement).style.backgroundColor = isDarkMode ? "#1a1a1a" : "#e7eef1";
     }
   }, [isDarkMode]);
 
   const handleCloseModal = () => {
     setModalIsOpen(false);
+    onClose();
   };
+
   const onLoginSuccess = () => {
     setModalIsOpen(false);
   }
+
   return (
     <Modal
       isOpen={modalIsOpen}
-      onRequestClose={handleCloseModal} // Close the modal when requested
+      onRequestClose={handleCloseModal}
       shouldCloseOnOverlayClick={false}
       shouldCloseOnEsc={false}
       style={customStyles}
     >
-      <h2 className="login17">{showRegistration ? 'Register' : 'Login'}</h2>
       {showRegistration ? (
         <RegistrationForm onClose={handleCloseModal} />
       ) : (

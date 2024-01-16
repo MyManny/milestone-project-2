@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -31,9 +32,9 @@ function App() {
     <HomePage isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <Router>
         <Routes>
-          <Route path='/' element={<UserModal />} />
-          <Route path='/login' element={<LoginForm />} />
-          <Route path='/register' element={<RegistrationForm />} />
+          <Route path='/' element={<UserModal onClose={() => {}} />} />
+          <Route path='/login' element={<LoginForm onLoginSuccess={() => {}} />} />
+          <Route path='/register' element={<RegistrationForm onClose={() => {}} />} />
           <Route
             path='/'
             element={<HomePage isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />}

@@ -1,49 +1,68 @@
-import React, { useState, useEffect, useRef } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState, useEffect, useRef, ChangeEvent, FormEvent } from 'react';
 
-function TodoForm(props) {
-    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-  const [input, setInput] = useState(props.edit ? props.edit.name : '');
-  const [titleInput, setTitleInput] = useState(props.edit ? props.edit.title : '');
+interface TodoFormProps {
+  edit?: {
+    name: string;
+    title: string;
+  };
+  onSubmit: (data: { name: string; title: string }) => void;
+}
 
-  const inputRef = useRef(null);
-  const titleInputRef = useRef(null);
+function TodoForm({ edit, onSubmit }: TodoFormProps) {
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+  const [input, setInput] = useState(edit ? edit.name : '');
+  const [titleInput, setTitleInput] = useState(edit ? edit.title : '');
 
-  const handleChange = (e) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const titleInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
 
-  const handleTitleChange = (e) => {
+  const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTitleInput(e.target.value);
   };
- 
+
   useEffect(() => {
-    inputRef.current.focus();
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }, []);
-        
-  const handleSubmit = (e) => {
+
+  const handleSubmit = (e: FormEvent) => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
     e.preventDefault();
 
-        // Create an object with the data you want to send to the server
+    // Create an object with the data you want to send to the server
     const todoData = {
-        name: input,
-        title: titleInput,
+      name: input,
+      title: titleInput,
     };
 
-    props.onSubmit(todoData);
+    onSubmit(todoData);
 
     setInput('');
     setTitleInput('');
     // Reset focus to the main input field
-    inputRef.current.focus();
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   };
 
   useEffect(() => {
     // On page load, set the focus to the main input field
-    inputRef.current.focus();
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
   }, []);
+
   return (
     <div>
-      <div >
+      <div>
         <form className='todo-form' onSubmit={handleSubmit}>
           <div>
             <input

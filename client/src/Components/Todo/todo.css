@@ -2,7 +2,7 @@
 .todo-app {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    flex: start;
     width: 520px;
     min-height: 600px;
     background: rgb(34, 32, 30) 100%;
