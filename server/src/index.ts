@@ -1,24 +1,25 @@
-const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
-const { registerUser, loginUser, logoutUser } = require("./user");
-const { listTodosForUser, createTodoForUser, updateTodoItem, deleteTodoItem } = require("./todo");
+import express, { Request, Response, NextFunction } from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import { registerUser, loginUser, logoutUser } from "../src/user";
+import { listTodosForUser, createTodoForUser, updateTodoItem, deleteTodoItem } from "../src/todo";
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 const port = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
     res.send({
         message: "Hello Developers!",
         secret: process.env.NOT_SO_SECRET,
     });
 });
 
-app.post("/register", express.json(), async (req, res) => {
+app.post("/register", async (req: Request, res: Response) => {
     try {
         const { username, password } = req.body;
         const userId = await registerUser(username, password);
@@ -29,12 +30,12 @@ app.post("/register", express.json(), async (req, res) => {
     } catch (err) {
         res.status(400).send({
             message: "Error registering user!",
-            error: err.message,
+            error: err instanceof Error ? err.message : "Unknown error"
         });
     }
 });
 
-app.post("/login", express.json(), async (req, res, next) => {
+app.post("/login", async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { username, password } = req.body;
         const token = await loginUser(username, password);
@@ -43,14 +44,20 @@ app.post("/login", express.json(), async (req, res, next) => {
             token,
         });
     } catch (err) {
-        res.status(400).send({
-            message: "Error logging in user!",
-            error: err.message,
-        });
+        if (err instanceof Error) {
+            res.status(400).send({
+                message: "Error logging in user!",
+                error: err.message,
+            });
+        } else {
+            res.status(400).send({
+                message: "Unknown error logging in user!",
+            });
+        }
     }
 });
 
-app.post("/logout", express.json(), async (req, res) => {
+app.post("/logout", async (req: Request, res: Response) => {
     try {
         const { token } = req.body;
         await logoutUser(token);
@@ -60,30 +67,30 @@ app.post("/logout", express.json(), async (req, res) => {
     } catch (err) {
         res.status(400).send({
             message: "Error logging out user!",
-            error: err.message,
+            error: err instanceof Error ? err.message : "Unknown error" 
         });
     }
 });
 
-app.get("/todos", express.json(), async (req, res) => {
+app.get("/todos", async (req: Request, res: Response) => {
     try {
-        const token = req.headers.authorization.split(" ")[1];
+        const token = req.headers.authorization?.split(" ")[1] || "";
         const todos = await listTodosForUser(token);
         res.send({
             message: "Todos retrieved successfully!",
             todos,
         });
-    } catch (err) {
+    } catch (err: any) {
         res.status(400).send({
             message: "Error retrieving todos!",
-            error: err.message,
+            error: err instanceof Error ? err.message : "Unknown error",
         });
     }
 });
 
-app.post("/todos", express.json(), async (req, res) => {
+app.post("/todos", async (req: Request, res: Response) => {
     try {
-        const token = req.headers.authorization.split(" ")[1];
+        const token = req.headers.authorization?.split(" ")[1] || "";
         const { title, name } = req.body;
         const todo = await createTodoForUser(token, title, name);
         res.send({
@@ -93,14 +100,14 @@ app.post("/todos", express.json(), async (req, res) => {
     } catch (err) {
         res.status(400).send({
             message: "Error creating todo!",
-            error: err.message,
+            error: err instanceof Error ? err.message : "Unknown error"
         });
     }
 });
 
-app.put("/todos/:id", express.json(), async (req, res) => {
+app.put("/todos/:id", async (req: Request, res: Response) => {
     try {
-        const token = req.headers.authorization.split(" ")[1];
+        const token = req.headers.authorization?.split(" ")[1] || "";
         const { id } = req.params;
         const { name, title, completed } = req.body;
         const todo = await updateTodoItem(token, id, name, title, completed);
@@ -111,14 +118,14 @@ app.put("/todos/:id", express.json(), async (req, res) => {
     } catch (err) {
         res.status(400).send({
             message: "Error updating todo!",
-            error: err.message,
+            error: err instanceof Error ? err.message : "Unknown error"
         });
     }
 });
 
-app.delete("/todos/:id", express.json(), async (req, res) => {
+app.delete("/todos/:id", async (req: Request, res: Response) => {
     try {
-        const token = req.headers.authorization.split(" ")[1];
+        const token = req.headers.authorization?.split(" ")[1] || "";
         const { id } = req.params;
         await deleteTodoItem(token, id);
         res.send({
@@ -127,7 +134,7 @@ app.delete("/todos/:id", express.json(), async (req, res) => {
     } catch (err) {
         res.status(400).send({
             message: "Error deleting todo!",
-            error: err.message,
+            error: err instanceof Error ? err.message : "Unknown error"
         });
     }
 });

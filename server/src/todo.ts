@@ -1,6 +1,8 @@
 const client = require("./db-client");
 
-async function listTodosForUser(token) {
+client.query("SELECT * FROM your_table")
+
+export async function listTodosForUser(token: string) {
     const result = await client.query(
         `
             SELECT "Todo".id, "Todo".title, "Todo".name, "Todo".completed 
@@ -14,7 +16,7 @@ async function listTodosForUser(token) {
     return result.rows;
 }
 
-async function createTodoForUser(token, title, name) {
+export async function createTodoForUser(token: string, title: string, name: string) {
     const result = await client.query(
         `
             INSERT INTO "Todo" (title, name, user_id)
@@ -26,7 +28,7 @@ async function createTodoForUser(token, title, name) {
     return result.rows[0]; // Return the newly created Todo item
 }
 
-async function updateTodoItem(token, todoId, updatedTitle, updatedName, updatedCompleted) {
+export async function updateTodoItem(token: string, todoId: string, updatedTitle: string, updatedName: string, updatedCompleted: boolean) {
     const result = await client.query(
         `
             UPDATE "Todo"
@@ -42,7 +44,7 @@ async function updateTodoItem(token, todoId, updatedTitle, updatedName, updatedC
     return result.rows[0]; // Return the updated Todo item
 }
 
-async function deleteTodoItem(token, todoId) {
+export async function deleteTodoItem(token: string, todoId: string) {
     await client.query(
         `
             DELETE FROM "Todo"

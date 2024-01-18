@@ -1,10 +1,10 @@
 const bcrypt = require("bcrypt");
-const crypto = require("crypto");
+import * as crypto from "crypto";
 const client = require("./db-client");
 
 const saltRounds = 10;
 
-async function registerUser(username, password) {
+export async function registerUser(username: string, password: string) {
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
@@ -17,7 +17,7 @@ async function registerUser(username, password) {
     return result.rows[0].id; // Return the newly created user ID
 }
 
-async function loginUser(username, password) {
+export async function loginUser(username: string, password: string) {
     const result = await client.query('SELECT id, password FROM "User" WHERE username = $1', [
         username,
     ]);
@@ -39,7 +39,7 @@ async function loginUser(username, password) {
     return token; // Return the token for the client to use
 }
 
-async function logoutUser(token) {
+export async function logoutUser(token: string) {
     await client.query('UPDATE "User" SET token = NULL WHERE token = $1', [token]);
 }
 
