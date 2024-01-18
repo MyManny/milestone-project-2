@@ -77,7 +77,7 @@ Here are the current issues we're aware of:
 
 - [Issue 1]: The deployed version of our app currently is experiencing a login bug where users aren't able to login to their accounts. It is for that reason that we will not be providing a link to our deployed app at this time. However, users can still access the Wander List by forking and cloning this repo and running it on their local machine. To learn how to, please refer back to the [How to Run Wander List](#run) section.
 
-- [Issue 2]: 
+- [Issue 2]: When trying to login it can take multiple clicks of the "login" button for it log you in.
 
 ## Contributors
 
