@@ -1,7 +1,5 @@
 const client = require("./db-client");
 
-client.query("SELECT * FROM your_table")
-
 export async function listTodosForUser(token: string) {
     const result = await client.query(
         `
