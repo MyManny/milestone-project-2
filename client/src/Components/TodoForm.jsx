@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import './main.scss';
 
 function TodoForm(props) {
     const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';

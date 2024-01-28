@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TodoForm from './TodoForm';
 import Todo from './Todo';
 import axios from 'axios';
+import './main.scss';
 
 
 function TodoList() {
