@@ -1,10 +1,19 @@
-const { Client } = require("pg");
-const dotenv = require("dotenv");
-
-dotenv.config();
-console.log("DB_STRING:", process.env.DB_STRING);
+import { Client } from "pg";
 
 class StableClient {
+    static query(createUserTableQuery: string) {
+        throw new Error("Method not implemented.");
+    }
+    static end() {
+        throw new Error("Method not implemented.");
+    }
+    private static instance: StableClient | null = null;
+    private _client: Client | null = null;
+
+    isConnected() {
+        return !!this._client && this._client.connect;
+    }
+
     constructor() {
         if (StableClient.instance) {
             return StableClient.instance;
@@ -23,7 +32,7 @@ class StableClient {
             },
         });
 
-        client.on("error", async (err) => {
+        client.on("error", async (err: { message: string | string[]; }) => {
             if (err.message.includes("terminated unexpectedly")) {
                 console.error("DB connection terminated unexpectedly, reconnecting...");
                 await this.end();
@@ -36,39 +45,26 @@ class StableClient {
         return client;
     }
 
-    isConnected() {
-        return this._client && this._client._connected;
-    }
-
     async connect() {
-        // If the client is not connected, then connect
-        console.log("call to connect");
         if (!this.isConnected()) {
-            console.log("not connected, connecting");
             if (!this._client) {
-                console.log("no client, creating client");
                 this._client = this.createDbClient();
             }
             await this._client.connect();
         }
     }
 
-    async query(...args) {
-        await this.connect(); // Ensure connection before querying
-        console.log("runningQuery")
-        return this._client.query(...args);
+    async query(queryText: string, values?: any[]) {
+        await this.connect();
+        return this._client?.query(queryText, values);
     }
-
+    
     async end() {
-        console.log("call to end connection");
         if (this.isConnected()) {
-            console.log("connected, ending connection");
-            await this._client.end();
+            await this._client?.end();
             this._client = null;
         }
     }
 }
 
-const client = new StableClient();
-
-module.exports = client;
+export default StableClient;

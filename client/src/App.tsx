@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import UserModal from './Components/UserModal';
-import HomePage from './Components/HomePage';
-import LoginForm from './Components/LoginUser';
-import RegistrationForm from './Components/RegistrationForm';
-import './App.css';
-import './Components/todo.css';
+import HomePage from './HomePage/HomePage';
+import LoginForm from './Components/LoginRegistration/LoginUser';
+import RegistrationForm from './Components/LoginRegistration/RegistrationForm';
+import './HomePage/App.css';
+import './Components/Todo/todo.css';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -30,9 +32,9 @@ function App() {
     <HomePage isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <Router>
         <Routes>
-          <Route path='/' element={<UserModal />} />
-          <Route path='/login' element={<LoginForm />} />
-          <Route path='/register' element={<RegistrationForm />} />
+          <Route path='/' element={<UserModal onClose={() => {}} />} />
+          <Route path='/login' element={<LoginForm onLoginSuccess={() => {}} />} />
+          <Route path='/register' element={<RegistrationForm onClose={() => {}} />} />
           <Route
             path='/'
             element={<HomePage isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />}

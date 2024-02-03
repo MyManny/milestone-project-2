@@ -1,4 +1,7 @@
-const client = require("./db-client");
+import client from "./db-client"
+
+const stableClient = require("./db-client");
+stableClient.query("SELECT * FROM your_table");
 
 const createUserTableQuery = `
 CREATE TABLE IF NOT EXISTS "User" (

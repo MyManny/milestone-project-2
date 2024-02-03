@@ -1,35 +1,33 @@
-import React, { useState, useEffect } from "react";
-import TodoList from "./TodoList";
-import DropMenu from "./DropMenu"
+import React, { useEffect, useState } from "react";
+import DropMenu from "../Components/DropMenu/DropMenu";
+import TodoList from "../Components/Todo/TodoList";
 
-export default function HomePage() {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const savedMode = localStorage.getItem("mode");
-    return savedMode === "dark";
-  });
+interface HomePageProps {
+  isDarkMode: boolean;
+  toggleDarkMode: () => void;
+}
 
+export default function HomePage({ isDarkMode, toggleDarkMode }: HomePageProps) {
   const [menu, setMenu] = useState(false);
-  
-  function handleMenuClick() {
-    setMenu((prevState) => !prevState);
-
-    const listButton = document.querySelector(".list--btn");
-  };
-  
   const [todos, setTodos] = useState(false);
   const [isX, setIsX] = useState(false);
 
+  function handleMenuClick() {
+    setMenu((prevState) => !prevState);
+  }
+
   function handleButtonClick() {
     setTodos((prevState) => !prevState);
-    setIsX((prevIsX) => !prevIsX)
+    setIsX((prevIsX) => !prevIsX);
   }
+
   const handleDarkModeClick = () => {
-    setIsDarkMode((prevMode) => !prevMode);
+    toggleDarkMode();
   };
 
   useEffect(() => {
-    const background = document.querySelector(".home--background");
-    const body = document.querySelector("body");
+    const background = document.querySelector(".home--background") as HTMLElement;
+    const body = document.querySelector("body") as HTMLElement;
 
     localStorage.setItem("mode", isDarkMode ? "dark" : "light");
 
@@ -72,7 +70,7 @@ export default function HomePage() {
           />
           <title>{isX ? "Close" : "Add List"}</title>
         </svg>
-        {menu && <DropMenu className={isDarkMode ? "dark--mode--fill" : "light--mode--fill"}/>}
+        {menu && <DropMenu />}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="list--btn"
