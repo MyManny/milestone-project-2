@@ -1,0 +1,112 @@
+@import 'variables';
+@import 'mixins';
+@import 'functions';
+
+.todo-app {
+  @include flex-column-center;
+  width: calculate-width($padding-large);
+  min-height: 600px;
+  background: $primary-color;
+  text-align: center;
+  margin: $margin-large auto;
+  border-radius: $border-radius;
+  padding-bottom: $margin-large;
+
+  .complete {
+    text-decoration: line-through;
+    opacity: $opacity-low;
+  }
+
+  .todo-form {
+    margin-bottom: $margin-large;
+  }
+
+  .todo-form-container {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .todo-input,
+  .todo-title {
+    padding: $padding-small $padding-large $padding-small $padding-small;
+    border-radius: $border-radius;
+    border: 2px solid $primary-color;
+    outline: none;
+    background: transparent;
+    color: $secondary-color;
+    width: calculate-width($padding-small);
+    transition: background $transition-speed, border $transition-speed;
+
+    &::placeholder {
+      color: $secondary-color;
+    }
+
+    &:hover {
+      @include hover-effect;
+    }
+
+    &.edit {
+      border: 2px solid $secondary-color;
+    }
+  }
+
+  .todo-button {
+    padding: $padding-large;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    outline: none;
+    background: $primary-color;
+    color: $font-color;
+    text-transform: capitalize;
+    transition: background $transition-speed;
+
+    &:hover {
+      background: darken-color($primary-color, 15%);
+    }
+
+    &.edit {
+      background: $background-gradient;
+      padding: $padding-large 22px;
+    }
+  }
+
+  .todo-container {
+    @include flex-column-center;
+    position: relative;
+  }
+
+  .todo-row {
+    @include linear-background;
+    padding: $padding-large;
+    border-radius: $border-radius;
+    width: 90%;
+    margin: $margin-small auto;
+    color: $font-color;
+
+    &:nth-child(4n + 1),
+    &:nth-child(4n + 2),
+    &:nth-child(4n + 3) {
+      background: $background-gradient;
+    }
+  }
+
+  .icons {
+    display: flex;
+    align-items: center;
+    font-size: $font-size-large;
+    cursor: pointer;
+
+    .delete-icon,
+    .edit-icon {
+      margin-right: 5px;
+      color: $font-color;
+    }
+  }
+
+  @if $primary-color == #fff {
+    @error "Primary color should not be white";
+  }
+}

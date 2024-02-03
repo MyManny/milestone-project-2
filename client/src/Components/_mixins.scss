@@ -1,0 +1,19 @@
+@import 'variables';
+
+@mixin flex-column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  }
+
+  @mixin hover-effect {
+    &:hover {
+      border-color: $border-color;
+    }
+  }
+
+  @mixin linear-background {
+    background: $background-gradient;
+  }
+
